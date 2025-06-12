@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, BrowserRouter as Router, Routes, Link } from 'react-router-dom';
 import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
@@ -14,11 +14,27 @@ import "./styles/Courses.css";
 import ChatbotComponent from "./components/Chatbot/ChatbotComponents";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
+import DeveloperInfoPopup from "./components/DeveloperInfo/DeveloperInfoPopup";
 
 
 
 function App () {
+  const [showPopup, setShowPopup] = useState(true);
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
     return (
+      <>
+      <div>
+        {/* Your main application content */}
+        <DeveloperInfoPopup
+          show={showPopup}
+          onClose={handleClosePopup}
+          studentName="Sanika dagadu patil"
+          studentPhotoUrl="/images/sanika.jpg" // Path to their photo
+          uniqueMessage="Learned so much during this OJT! This app showcases my independent coding and deployment skills"
+        />
+      </div>
         <Router>
             <div className="main-layout">
                 <Header/>
@@ -35,6 +51,7 @@ function App () {
                 <Footer/>
             </div>
         </Router>
+      </>
     );
 }
 
